@@ -31,7 +31,6 @@ class CharacterListProvider extends ChangeNotifier {
     _isLoading = true;
     _errorMessage = null;
     notifyListeners();
-
     try {
       _characters = await _apiService.getCharacters();
     } catch (e) {
@@ -62,10 +61,65 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('RICK AND MORTY API'),
-        centerTitle: true,
+      // AQUI ESTÁ A MUDANÇA: Usamos PreferredSize para ter uma AppBar com altura personalizada
+      // e um layout totalmente customizado no flexibleSpace.
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(screenHeight * 0.12),
+        child: AppBar(
+          automaticallyImplyLeading: false, // Remove o botão de voltar padrão
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          flexibleSpace: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              child: Column(
+                children: [
+                  // Linha superior com os ícones e o logo
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.menu),
+                        Image.asset(
+                          'assets/icone_KodeStart.png',
+                          height: 80,
+                        ),
+                        // Ícone de perfil com borda circular e clicável
+                        InkWell(
+                          customBorder: const CircleBorder(),
+                          child: Container(
+                            padding: const EdgeInsets.all(4.0),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: Colors.white.withOpacity(0.8),
+                                width: 1.5,
+                              ),
+                            ),
+                            child: const Icon(Icons.person_outline, size: 22),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // Texto na parte inferior do cabeçalho
+                  const Text(
+                    'RICK AND MORTY API',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 1.0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
       body: Consumer<CharacterListProvider>(
         builder: (context, provider, child) {
@@ -91,6 +145,6 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
           );
         },
       ),
-    );
+    );  
   }
 }

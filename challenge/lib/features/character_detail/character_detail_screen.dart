@@ -17,25 +17,22 @@ class CharacterDetailScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          // A MUDANÇA ESTÁ AQUI: AGORA TEMOS UM ÚNICO CARD
           child: Card(
-            clipBehavior: Clip.antiAlias, // Garante que o conteúdo respeite as bordas
-            color: const Color(0xFF5892E3), // O fundo do card é azul
+            clipBehavior: Clip.antiAlias, 
+            color: const Color(0xFF5892E3), 
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // 1. A IMAGEM
-                // A imagem agora está DENTRO do card.
+                
                 Image.network(
                   character.image,
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
-                // 2. A SECÇÃO DE DETALHES
-                // As informações vêm logo abaixo da imagem, dentro do mesmo card.
+
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
