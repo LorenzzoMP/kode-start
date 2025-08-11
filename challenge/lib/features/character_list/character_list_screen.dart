@@ -11,10 +11,21 @@ class CharacterListProvider extends ChangeNotifier {
   bool _isLoading = false;
   List<Character> _characters = [];
   String? _errorMessage;
+  int? _selectedCharacterId;
 
   bool get isLoading => _isLoading;
   List<Character> get characters => _characters;
   String? get errorMessage => _errorMessage;
+  int? get selectedCharacterId => _selectedCharacterId;
+
+  void toggleCharacterSelection(int characterId) {
+    if (_selectedCharacterId == characterId) {
+      _selectedCharacterId = null;
+    } else {
+      _selectedCharacterId = characterId;
+    }
+    notifyListeners();
+  }
 
   Future<void> fetchCharacters() async {
     _isLoading = true;
