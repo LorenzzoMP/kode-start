@@ -6,13 +6,18 @@ A aplicação permite aos utilizadores explorar o universo de Rick & Morty, visu
 
 ✨ Funcionalidades Implementadas
 Funcionalidades Obrigatórias
+
 [x] Lista de Personagens: Exibição de uma lista vertical rolável com todos os personagens obtidos da API.
+
 
 [x] Cards de Personagem: Cada item da lista exibe o nome e a imagem do personagem.
 
+
 [x] Navegação para Detalhes: Ao efetuar um clique duplo num personagem, o utilizador é levado para uma tela dedicada com mais informações.
 
+
 [x] Tela de Detalhes: Uma página completa que exibe:
+
 
 Nome e Imagem
 
@@ -25,15 +30,21 @@ Origem e Última localização conhecida
 Primeira aparição na série
 
 Funcionalidades Extra e Melhorias
+
 [x] Detalhes Expansíveis: Com um único clique, o card do personagem expande-se diretamente na lista, mostrando os detalhes de forma rápida e com uma animação de deslize.
+
 
 [x] Filtro por Nome: Um menu lateral (Drawer) permite ao utilizador buscar personagens por nome, total ou parcial.
 
+
 [x] Filtro por Temporada: No mesmo menu, é possível selecionar uma temporada e visualizar todos os personagens que apareceram nela.
+
 
 [x] Sistema de Favoritos: O utilizador pode marcar personagens como favoritos na tela de detalhes. Uma opção no menu lateral permite visualizar apenas a lista de personagens favoritados.
 
+
 [x] Design Personalizado: A interface foi cuidadosamente estilizada para se assemelhar ao protótipo fornecido, incluindo um cabeçalho personalizado e um tema escuro.
+
 
 🛠️ Arquitetura e Padrões Escolhidos
 Para o desenvolvimento da solução, foram feitas as seguintes escolhas técnicas:
@@ -64,4 +75,5 @@ Instale as dependências: flutter pub get
 Execute a aplicação: flutter run
 
 🎬 Demonstração
-(Adicione aqui o seu GIF ou link do vídeo)
+
+(https://drive.google.com/file/d/1qblxbm2mTHCnECG5jqOKLOZjo99a37pn/view)
