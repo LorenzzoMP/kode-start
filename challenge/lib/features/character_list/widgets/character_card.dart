@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../core/models/character.dart';
 import '../character_list_screen.dart';
-  import '../../character_detail/character_detail_screen.dart';
+import '../../character_detail/character_detail_screen.dart';
 
 class CharacterCard extends StatelessWidget {
   final Character character;
@@ -68,10 +68,32 @@ class CharacterCard extends StatelessWidget {
                 ),
               ],
             ),
-            AnimatedSize(
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-              child: isSelected ? _buildDetailsSection(context) : null,
+            
+            AnimatedSwitcher(
+              duration: const Duration(milliseconds: 200),
+              transitionBuilder: (Widget child, Animation<double> animation) {
+  
+                final slideAnimation = Tween<Offset>(
+                  begin: const Offset(0.0, -0.2), 
+                  end: Offset.zero,
+                ).animate(CurvedAnimation(parent: animation, curve: Curves.easeInOut));
+                
+                return ClipRect(
+                  child: SlideTransition(
+                    position: slideAnimation,
+                    child: FadeTransition(
+                      opacity: animation,
+                      child: child,
+                    ),
+                  ),
+                );
+              },
+              child: isSelected
+                  ? Container(
+                      key: ValueKey<int>(character.id),
+                      child: _buildDetailsSection(context),
+                    )
+                  : const SizedBox.shrink(),
             ),
           ],
         ),
