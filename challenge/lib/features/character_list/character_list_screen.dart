@@ -13,7 +13,6 @@ class CharacterListProvider extends ChangeNotifier {
   String? _errorMessage;
   int? _selectedCharacterId;
   
-  // ADIÇÃO: Lógica de Favoritos
   final List<int> _favoriteCharacterIds = [];
   bool _isShowingFavorites = false;
 
@@ -22,7 +21,6 @@ class CharacterListProvider extends ChangeNotifier {
   int? get selectedCharacterId => _selectedCharacterId;
   List<int> get favoriteCharacterIds => _favoriteCharacterIds;
 
-  // ALTERAÇÃO: A lista de personagens a ser exibida agora depende do filtro de favoritos
   List<Character> get characters {
     if (_isShowingFavorites) {
       return _allCharacters.where((char) => _favoriteCharacterIds.contains(char.id)).toList();
@@ -30,7 +28,6 @@ class CharacterListProvider extends ChangeNotifier {
     return _allCharacters;
   }
 
-  // ADIÇÃO: Método para favoritar/desfavoritar
   void toggleFavoriteStatus(int characterId) {
     if (_favoriteCharacterIds.contains(characterId)) {
       _favoriteCharacterIds.remove(characterId);
@@ -40,7 +37,6 @@ class CharacterListProvider extends ChangeNotifier {
     notifyListeners();
   }
   
-  // ADIÇÃO: Método para mostrar apenas os favoritos
   void showOnlyFavorites() {
     _isShowingFavorites = true;
     _selectedCharacterId = null;
@@ -152,7 +148,6 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
               Text('Filtros', style: Theme.of(context).textTheme.headlineSmall),
               const SizedBox(height: 24),
               
-              // ADIÇÃO: Secção de Favoritos
               ElevatedButton.icon(
                 icon: const Icon(Icons.star),
                 label: const Text('Ver Favoritos'),
